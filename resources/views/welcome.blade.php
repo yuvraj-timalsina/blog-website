@@ -10,8 +10,8 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('blog/css/styles.css') }}" rel="stylesheet"/>
-    <!-- Font Awesome CDN-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+    <!-- Boxicons CDN-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
 </head>
 <body>
 <!-- Page header with logo and tagline-->
@@ -78,11 +78,21 @@
                     <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
                                       alt="..."/></a>
                     <div class="card-body">
+                        <a class="btn btn-sm btn-success mb-2" href="#!">Tech</a>
                         <div class="small text-muted">January 1, 2022</div>
                         <h2 class="card-title h4">Post Title</h2>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
                             aliquid atque, nulla.</p>
-                        <a class="btn btn-primary" href="#!">Read more →</a>
+                        <div class="d-flex flex-row align-items-center">
+                            <div class="icon"><i class='bx bxs-user-circle'></i></div>
+                            <div class="ms-1 c-details">
+                                <h6 class="mb-0">Mailchimp</h6> <span>1 days ago</span>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <a class="btn btn-sm btn-outline-danger" href="#!">Tech</a>
+                            <a class="btn btn-sm btn-outline-danger" href="#!">Tech</a>
+                        </div>
                     </div>
                 </div>
             </div>

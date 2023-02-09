@@ -64,7 +64,9 @@
          */
         public function deleteImage() : void
         {
-            Storage::delete($this->featured_image);
+            if (Storage::disk('public')->exists($this->image?->thumbnail)) {
+                Storage::disk('public')->delete($this->image?->thumbnail);
+            }
         }
 
         public function sluggable() : array
@@ -74,17 +76,5 @@
                     'source' => 'title'
                 ]
             ];
-        }
-
-        /**
-         * Concatenate storage with image path.
-         *
-         * @return \Illuminate\Database\Eloquent\Casts\Attribute
-         */
-        protected function thumbnail() : Attribute
-        {
-            return Attribute::make(
-                get : static fn($value) => asset('/storage/' . $value)
-            );
         }
     }

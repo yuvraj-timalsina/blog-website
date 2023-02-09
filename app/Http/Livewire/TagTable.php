@@ -65,4 +65,5 @@
             Tag::whereIn('id', $this->getSelected())->delete();
             $this->clearSelected();
         }
+
     }

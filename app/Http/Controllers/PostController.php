@@ -136,9 +136,6 @@
          */
         public function edit(Post $post)
         {
-            if ($post->user_id != auth()->id()) {
-                return abort(403);
-            }
             $categories = $this->fetchCategory();
             $tags = $this->fetchTag();
 

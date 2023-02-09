@@ -26,7 +26,7 @@
                             @csrf
                             @method('PUT')
                             <div class="mb-2">
-                                <img src="{{ $post->thumbnail }}" alt="" width="225px" id="previewImg">
+                                <img src="{{ asset('/storage/'. $post->image?->imageFile) }}" alt="" width="225px" id="previewImg">
                             </div>
                             <div class="mb-3">
                                 <label for="thumbnail" class="form-label">Thumbnail</label>

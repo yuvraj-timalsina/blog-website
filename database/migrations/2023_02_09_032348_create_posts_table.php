@@ -17,7 +17,7 @@
             Schema::create('posts', function (Blueprint $table) {
                 $table->id();
                 $table->string('title');
-                $table->string('slug')->unique();
+                $table->string('slug');
                 $table->longText('content');
                 $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
                 $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
