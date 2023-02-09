@@ -1,86 +1,101 @@
 <?php
 
-namespace App\Http\Controllers;
+    namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTagRequest;
-use App\Http\Requests\UpdateTagRequest;
-use App\Models\Tag;
+    use App\Http\Requests\Tag\StoreTagRequest;
+    use App\Http\Requests\Tag\UpdateTagRequest;
+    use App\Models\Tag;
 
-class TagController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    class TagController extends Controller
     {
-        //
-    }
+        /**
+         * Display a listing of the resource.
+         *
+         * @return \Illuminate\Http\Response
+         */
+        public function index()
+        {
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+            return view('tags.index');
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreTagRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreTagRequest $request)
-    {
-        //
-    }
+        /**
+         * Store a newly created resource in storage.
+         *
+         * @param \Illuminate\Http\Request $request
+         *
+         * @return \Illuminate\Http\Response
+         */
+        public function store(StoreTagRequest $request)
+        {
+            Tag::create($request->validated());
+            flash('Tag Created Successfully!');
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Tag $tag)
-    {
-        //
-    }
+            return to_route('tags.index');
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Tag $tag)
-    {
-        //
-    }
+        /**
+         * Show the form for creating a new resource.
+         *
+         * @return \Illuminate\Http\Response
+         */
+        public function create()
+        {
+            return view('tags.create');
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateTagRequest  $request
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateTagRequest $request, Tag $tag)
-    {
-        //
-    }
+        /**
+         * Display the specified resource.
+         *
+         * @param \App\Models\Tag $tag
+         *
+         * @return \Illuminate\Http\Response
+         */
+        public function show(Tag $tag)
+        {
+            //
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Tag $tag)
-    {
-        //
+        /**
+         * Show the form for editing the specified resource.
+         *
+         * @param \App\Models\Tag $tag
+         *
+         * @return \Illuminate\Http\Response
+         */
+        public function edit(Tag $tag)
+        {
+            return view('tags.edit', compact('tag'));
+        }
+
+        /**
+         * Update the specified resource in storage.
+         *
+         * @param \Illuminate\Http\Request $request
+         * @param \App\Models\Tag $tag
+         *
+         * @return \Illuminate\Http\Response
+         */
+        public function update(UpdateTagRequest $request, Tag $tag)
+        {
+            $tag->update($request->validated());
+            flash('Tag Updated Successfully!');
+
+            return to_route('tags.index');
+        }
+
+        /**
+         * Remove the specified resource from storage.
+         *
+         * @param \App\Models\Tag $tag
+         *
+         * @return \Illuminate\Http\Response
+         */
+        public function destroy(Tag $tag)
+        {
+            $tag->delete();
+            flash('Tag Deleted Successfully!');
+
+            return to_route('tags.index');
+        }
     }
-}
