@@ -17,6 +17,8 @@
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 @livewireStyles
+
+    @stack('styles')
 </head>
 <body class="font-sans antialiased">
 <div class="min-h-screen bg-gray-100">
@@ -37,5 +39,6 @@
     </main>
 </div>
 @livewireScripts
+@stack('scripts')
 </body>
 </html>

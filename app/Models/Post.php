@@ -2,6 +2,7 @@
 
     namespace App\Models;
 
+    use Cviebrock\EloquentSluggable\Sluggable;
     use Illuminate\Database\Eloquent\Casts\Attribute;
     use Illuminate\Database\Eloquent\Factories\HasFactory;
     use Illuminate\Database\Eloquent\Model;
@@ -9,11 +10,13 @@
     use Illuminate\Database\Eloquent\Relations\BelongsToMany;
     use Illuminate\Database\Eloquent\Relations\MorphOne;
     use Illuminate\Database\Eloquent\SoftDeletes;
+    use Illuminate\Support\Facades\Storage;
 
     class Post extends Model
     {
         use HasFactory;
         use SoftDeletes;
+        use Sluggable;
 
         protected $fillable = ['title', 'slug', 'content', 'thumbnail', 'category_id', 'user_id'];
 
@@ -52,6 +55,25 @@
         public function hasTag($name) : bool
         {
             return in_array($name, $this->tags->pluck('name')->toArray(), true);
+        }
+
+        /**
+         * Delete post image from Storage.
+         *
+         * @return void
+         */
+        public function deleteImage() : void
+        {
+            Storage::delete($this->featured_image);
+        }
+
+        public function sluggable() : array
+        {
+            return [
+                'slug' => [
+                    'source' => 'title'
+                ]
+            ];
         }
 
         /**
