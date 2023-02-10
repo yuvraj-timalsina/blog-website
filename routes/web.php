@@ -1,5 +1,6 @@
 <?php
 
+    use App\Http\Controllers\BlogController;
     use App\Http\Controllers\CategoryController;
     use App\Http\Controllers\PostController;
     use App\Http\Controllers\ProfileController;
@@ -26,6 +27,9 @@
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::get('posts/category/{category}', [BlogController::class, 'categoryPosts'])->name('posts.category');
+        Route::get('posts/tag/{tag}', [BlogController::class, 'tagPosts'])->name('posts.tag');
+        Route::get('posts/user/{user}', [BlogController::class, 'userPosts'])->name('posts.user');
         Route::resources([
             'categories' => CategoryController::class,
             'tags' => TagController::class,

@@ -66,14 +66,16 @@
                                                                       src="{{asset('/storage/' . $post->image?->imageFile)}}"
                                                                       alt="{{$post->title}}"/></a>
                         <div class="card-body">
-                            <a class="btn btn-sm btn-success mb-2" href="#!">{{$post->category->name}}</a>
+                            <a class="btn btn-sm btn-success mb-2" href="{{route('posts.category', $post->category)}}">
+                                {{$post->category->name}}
+                            </a>
                             <h2 class="card-title h4">
                                 {{ $post->title }}
                             </h2>
                             <p class="card-text">
                                 {!! Str::words(strip_tags($post->content), 10) !!}
                             </p>
-                            <div class="d-flex flex-row align-items-center">
+                            <div onclick="window.location='{{ route('posts.user', $post->user) }}'" class="d-flex flex-row align-items-center" style="cursor: pointer">
                                 <div class="icon"><i class='bx bxs-user-circle'></i></div>
                                 <div class="ms-1 c-details">
                                     <h6 class="mb-0">{{$post->user->name}}</h6>
@@ -82,7 +84,9 @@
                             </div>
                             <div class="mt-2">
                                 @foreach($post->tags as $tag)
-                                    <a class="btn btn-sm btn-outline-danger" href="#!">{{$tag->name}}</a>
+                                    <a class="btn btn-sm btn-outline-danger" href="{{route('posts.tag', $tag)}}">
+                                        {{$tag->name}}
+                                    </a>
                                 @endforeach
                             </div>
                         </div>

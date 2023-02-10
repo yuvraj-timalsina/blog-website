@@ -58,6 +58,15 @@
                         ];
                     })
                     ->buttons([
+
+                        LinkColumn::make('Edit')
+                            ->title(fn($row) => 'Edit ')
+                            ->location(fn($row) => route('posts.edit', $row))
+                            ->attributes(function ($row) {
+                                return [
+                                    'class' => 'btn btn-sm btn-primary',
+                                ];
+                            }),
                         LinkColumn::make('Show')
                             ->title(fn($row) => 'Show ')
                             ->location(fn($row) => route('posts.show', $row))
@@ -65,14 +74,6 @@
                                 return [
                                     'target' => '_blank',
                                     'class' => 'btn btn-sm btn-success',
-                                ];
-                            }),
-                        LinkColumn::make('Edit')
-                            ->title(fn($row) => 'Edit ')
-                            ->location(fn($row) => route('posts.edit', $row))
-                            ->attributes(function ($row) {
-                                return [
-                                    'class' => 'btn btn-sm btn-primary',
                                 ];
                             }),
                     ]),
@@ -125,5 +126,4 @@
 
             return Excel::download(new PostExport($posts), 'posts.xlsx');
         }
-
     }
