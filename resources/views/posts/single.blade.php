@@ -17,9 +17,7 @@
                     <div class="mb-4">
                         <a class="btn btn-sm btn-success mb-2"
                            href="{{route('posts.category', $post->category)}}">{{$post->category->name}}</a>
-                        <p class="card-text">
                             {!! $post->content !!}
-                        </p>
                     </div>
                 </div>
             </div>

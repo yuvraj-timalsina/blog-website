@@ -155,4 +155,11 @@
             flash('Post Deleted Successfully!');
             return to_route('posts.index');
         }
+
+        public function import()
+        {
+            $path = storage_path('app/public/posts.xlsx');
+            $data = \Excel::toArray(new \App\Imports\PostImport, $path);
+            dd($data);
+        }
     }

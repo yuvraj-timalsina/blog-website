@@ -5035,7 +5035,10 @@ textarea.form-control-lg {
 .card-group > .card {
     margin-bottom: 0.75rem;
 }
-
+.select2-container .select2-selection--multiple {
+border: 1px solid #ced4da!important;
+  min-height: 35px!important;
+}
 @media (min-width: 576px) {
     .card-group {
         display: flex;

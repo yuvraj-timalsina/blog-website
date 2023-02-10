@@ -2,8 +2,8 @@
 
     namespace App\Http\Livewire;
 
-    use App\Models\Post;
     use App\Models\Category;
+    use App\Models\Post;
     use App\Models\Tag;
     use App\Models\User;
     use Livewire\Component;
@@ -17,31 +17,48 @@
         public $user;
         public $title;
         public $category;
+        public $tags = [];
+        public $users = [];
+        public $categories = [];
+        public $selectedOptionsTags = [];
         protected $paginationTheme = 'bootstrap';
+        protected $listeners = ['setTagData'];
+
+        public function setTagData($tag)
+        {
+            $this->selectedOptionsTags = $tag;
+        }
 
         public function updated() : void
         {
             $this->resetPage();
         }
 
+        public function mount()
+        {
+            $this->categories = Category::all();
+            $this->tags = Tag::all();
+            $this->users = User::all();
+        }
+
         public function resetFilters() : void
         {
-            $this->reset();
+            $this->reset(['user', 'title', 'category', 'selectedOptionsTags']);
         }
 
         public function render()
         {
             $posts = Post::with(['user', 'category', 'tags']);
 
-           if (!empty($this->title)) {
+            if (!empty($this->title)) {
                 $posts->where('title', 'LIKE', '%' . $this->title . '%');
             }
             if (!empty($this->category)) {
                 $posts->where('category_id', $this->category);
             }
-            if (!empty($this->tag)) {
+            if (count($this->selectedOptionsTags)) {
                 $posts->whereHas('tags', function ($query) {
-                    $query->where('tag_id', $this->tag);
+                    $query->whereIn('tags.id', $this->selectedOptionsTags);
                 });
             }
             if (!empty($this->user)) {
@@ -49,16 +66,10 @@
             }
 
             $posts = $posts->paginate(8);
-            $categories = Category::all();
-            $tags = Tag::all();
-            $users = User::all();
 
             return view('livewire.blog-component',
                 [
                     'posts' => $posts,
-                    'categories' => $categories,
-                    'tags' => $tags,
-                    'users' => $users
                 ]);
         }
     }

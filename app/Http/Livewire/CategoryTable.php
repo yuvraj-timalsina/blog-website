@@ -30,11 +30,11 @@
         public function bulkActions() : array
         {
             return [
-                'deleteCategory' => 'Delete',
+                'bulkDelete' => 'Delete',
             ];
         }
 
-        public function deleteCategory() : void
+        public function bulkDelete() : void
         {
             Category::whereIn('id', $this->getSelected())->delete();
             $this->clearSelected();

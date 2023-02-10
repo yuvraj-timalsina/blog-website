@@ -49,7 +49,9 @@
                         fn($value, $row, Column $column) => $row->created_at?->format('M d, Y')
                     )
                     ->sortable(),
-                  Column::make('Action') ->label(function ($row, Column $column) { return view('action.post', ['post' => $row]); },),
+                Column::make('Action')->label(function ($row, Column $column) {
+                    return view('action.post', ['post' => $row]);
+                },),
             ];
         }
 
@@ -61,12 +63,12 @@
         public function bulkActions() : array
         {
             return [
-                'deletePost' => 'Delete',
+                'bulkDelete' => 'Delete',
                 'export' => 'Export',
             ];
         }
 
-        public function deletePost() : void
+        public function bulkDelete() : void
         {
             Post::whereIn('id', $this->getSelected())->delete();
             $this->clearSelected();
@@ -86,16 +88,15 @@
                     )->filter(function (Builder $builder, array $values) {
                         $builder->withWhereHas('category', fn($query) => $query->whereIn('categories.id', $values));
                     }),
-
             ];
         }
 
         public function export()
         {
             $posts = $this->getSelected();
-
             $this->clearSelected();
 
             return Excel::download(new PostExport($posts), 'posts.xlsx');
         }
+
     }
