@@ -12,31 +12,34 @@
         public function categoryPosts(Request $request, Category $category)
         {
             return view('posts.category', [
-                'users' => User::all(),
-                'categories' => Category::all(),
-                'tags' => Tag::all(),
+                $this->fetchData(),
                 'category' => $category,
                 'posts' => $category->posts()->with(['user', 'category', 'tags'])->paginate(8),
             ]);
         }
 
+        private function fetchData() : array
+        {
+            return [
+                'users' => User::all(),
+                'categories' => Category::all(),
+                'tags' => Tag::all()
+            ];
+        }
+
         public function tagPosts(Request $request, Tag $tag)
         {
             return view('posts.tag', [
-                'users' => User::all(),
-                'categories' => Category::all(),
-                'tags' => Tag::all(),
+                $this->fetchData(),
                 'tag' => $tag,
                 'posts' => $tag->posts()->with(['user', 'category', 'tags'])->paginate(8),
             ]);
         }
 
-         public function userPosts(Request $request, User $user)
+        public function userPosts(Request $request, User $user)
         {
             return view('posts.user', [
-                'users' => User::all(),
-                'categories' => Category::all(),
-                'tags' => Tag::all(),
+                $this->fetchData(),
                 'user' => $user,
                 'posts' => $user->posts()->with(['category', 'tags'])->paginate(8),
             ]);
