@@ -27,7 +27,6 @@
             return [
                 ImageColumn::make('Thumbnail')
                     ->location(fn($row) => asset('/storage/' . $row->image?->imageFile))->attributes(fn($row) => [
-
                         'class' => 'rounded-full ',
                         'style' => 'height:40px',
                         'alt' => $row->name,
@@ -46,12 +45,11 @@
                     ->label(fn($row) => $row->tags->pluck('name')->implode(', ')),
                 Column::make('Created At')
                     ->format(
-                        fn($value, $row, Column $column) => $row->created_at?->format('M d, Y')
-                    )
+                        fn($value, $row, Column $column) => $row->created_at?->format('M d, Y'))
                     ->sortable(),
                 Column::make('Action')->label(function ($row, Column $column) {
                     return view('action.post', ['post' => $row]);
-                },),
+                }),
             ];
         }
 
@@ -98,5 +96,4 @@
 
             return Excel::download(new PostExport($posts), 'posts.xlsx');
         }
-
     }
