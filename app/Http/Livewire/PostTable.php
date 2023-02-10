@@ -36,14 +36,14 @@
                     ]),
                 Column::make("Title", "title")
                     ->sortable()
-                ->searchable(),
+                    ->searchable(),
                 Column::make("Slug", "slug"),
                 Column::make('Author', 'user.name')
                     ->sortable()
-                ->searchable(),
+                    ->searchable(),
                 Column::make("Category", "category.name")
                     ->sortable()
-                ->searchable(),
+                    ->searchable(),
                 Column::make('Tags')
                     ->label(fn($row) => $row->tags->pluck('name')->implode(', ')),
                 Column::make('Created At')
@@ -54,7 +54,7 @@
                 ButtonGroupColumn::make('Actions')
                     ->attributes(function ($row) {
                         return [
-                            'class' => 'space-x-2',
+                            'class' => 'space-x-1',
                         ];
                     })
                     ->buttons([
@@ -82,7 +82,7 @@
         public function builder() : Builder
         {
             return Post::query()->with(['image', 'category', 'tags'])
-                 ->when($this->columnSearch['title'] ?? null, fn ($query, $title) => $query->where('posts.title', 'like', '%' . $title . '%'));
+                ->when($this->columnSearch['title'] ?? null, fn($query, $title) => $query->where('posts.title', 'like', '%' . $title . '%'));
         }
 
         public function bulkActions() : array
@@ -119,11 +119,11 @@
 
         public function export()
         {
-
             $posts = $this->getSelected();
 
             $this->clearSelected();
 
             return Excel::download(new PostExport($posts), 'posts.xlsx');
         }
+
     }

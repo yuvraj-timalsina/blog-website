@@ -6,9 +6,9 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-md-9">
                         <div class="mb-4">
-                            <input wire:model="title" class="form-control" type="text" name="title"
+                            <strong>Search by Blog Title:</strong>
+                            <input wire:model="title" class="form-control" type="text"
                                    placeholder="Search by Blog Title..."/>
-
                         </div>
                     </div>
                 </div>
@@ -16,8 +16,9 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-md-3">
                         <div class="mb-4">
+                            <strong>Filter by Author:</strong>
                             <select wire:model="user" class="form-select" aria-label="Author Filter">
-                                <option hidden="">Author (0)</option>
+                                <option hidden>Author (0)</option>
                                 @foreach($users as $user)
                                     <option value="{{$user->id}}">{{$user->name}}</option>
                                 @endforeach
@@ -26,8 +27,9 @@
                     </div>
                     <div class="col-md-3">
                         <div class="mb-4">
+                            <strong>Filter by Category:</strong>
                             <select wire:model="category" class="form-select" aria-label="Category Filter">
-                                <option value="">Category (0)</option>
+                                <option hidden>Category (0)</option>
                                 @foreach($categories as $category)
                                     <option value="{{$category->id}}">{{$category->name}}</option>
                                 @endforeach
@@ -36,6 +38,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="mb-4">
+                            <strong>Filter by Tag:</strong>
                             <select wire:model="tag" class="form-select" aria-label="Tag Filter">
                                 <option hidden>Tag (2)</option>
                                 @foreach($tags as $tag)
@@ -59,8 +62,9 @@
                 <div class="col-lg-3 col-md-4 col-sm-12">
                     <!-- Blog post-->
                     <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="{{asset('/storage/' . $post->image?->imageFile)}}"
-                                          alt="{{$post->title}}"/></a>
+                        <a href="{{route('posts.show', $post)}}"><img class="card-img-top"
+                                                                      src="{{asset('/storage/' . $post->image?->imageFile)}}"
+                                                                      alt="{{$post->title}}"/></a>
                         <div class="card-body">
                             <a class="btn btn-sm btn-success mb-2" href="#!">{{$post->category->name}}</a>
                             <h2 class="card-title h4">
@@ -85,7 +89,7 @@
                     </div>
                 </div>
             @empty
-                <h3 class="text-center mb-5">Nothing to display!</h3>
+                <h3 class="text-center mb-5">Nothing to Display!</h3>
             @endforelse
             <!-- Pagination-->
             {{ $posts->links()}}

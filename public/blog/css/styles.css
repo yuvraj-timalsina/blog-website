@@ -249,6 +249,14 @@ a:hover {
     align-items: center;
     font-size: 39px
 }
+.blog-thumbnail {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
     color: inherit;

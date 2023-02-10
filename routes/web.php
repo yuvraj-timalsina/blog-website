@@ -5,7 +5,7 @@
     use App\Http\Controllers\ProfileController;
     use App\Http\Controllers\TagController;
     use Illuminate\Support\Facades\Route;
-      use UniSharp\LaravelFilemanager\Lfm;
+    use UniSharp\LaravelFilemanager\Lfm;
 
     /*
     |--------------------------------------------------------------------------
@@ -32,7 +32,7 @@
             'posts' => PostController::class,
         ]);
     });
-  Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], static function () {
+    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], static function () {
         Lfm::routes();
     });
     require __DIR__ . '/auth.php';

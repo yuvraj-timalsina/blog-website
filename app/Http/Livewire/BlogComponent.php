@@ -33,19 +33,19 @@
         {
             $posts = Post::with(['user', 'category', 'tags']);
 
-            if (!empty($this->title)) {
-                $posts->orWhere('title', $this->title);
+           if (!empty($this->title)) {
+                $posts->where('title', 'LIKE', '%' . $this->title . '%');
             }
             if (!empty($this->category)) {
-                $posts->orWhere('category_id', $this->category);
+                $posts->where('category_id', $this->category);
             }
             if (!empty($this->tag)) {
-                $posts->orWhereHas('tags', function ($query) {
+                $posts->whereHas('tags', function ($query) {
                     $query->where('tag_id', $this->tag);
                 });
             }
             if (!empty($this->user)) {
-                $posts->orWhere('user_id', $this->user);
+                $posts->where('user_id', $this->user);
             }
 
             $posts = $posts->paginate(8);

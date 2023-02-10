@@ -28,19 +28,10 @@
                 ButtonGroupColumn::make('Actions')
                     ->attributes(function ($row) {
                         return [
-                            'class' => 'space-x-2',
+                            'class' => 'space-x-1',
                         ];
                     })
                     ->buttons([
-                        LinkColumn::make('Show')
-                            ->title(fn($row) => 'Show ')
-                            ->location(fn($row) => route('categories.show', $row))
-                            ->attributes(function ($row) {
-                                return [
-                                    'target' => '_blank',
-                                    'class' => 'btn btn-sm btn-success',
-                                ];
-                            }),
                          LinkColumn::make('Edit')
                             ->title(fn($row) => 'Edit ')
                             ->location(fn($row) => route('categories.edit', $row))
