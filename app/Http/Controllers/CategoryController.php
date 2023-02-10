@@ -15,7 +15,6 @@
          */
         public function index()
         {
-
             return view('categories.index');
         }
 
@@ -93,6 +92,11 @@
          */
         public function destroy(Category $category)
         {
+            if ($category->posts->count()) {
+                flash('Category has posts. You cannot delete it!', 'warning');
+
+                return back();
+            }
             $category->delete();
             flash('Category Deleted Successfully!');
 

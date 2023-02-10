@@ -27,9 +27,10 @@
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    @auth
-                    <li class="nav-item"><a class="nav-link" href="{{route('dashboard')}}">Dashboard</a></li>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                @auth
+                    <li class="nav-item"><a class="nav-link" target="_blank" href="{{route('dashboard')}}">Dashboard</a>
+                    </li>
                     <li class="nav-item">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -39,13 +40,13 @@
                             </a>
                         </form>
                     </li>
-                          @endauth
+                @endauth
 
-                    @guest
-                          <li class="nav-item"><a class="nav-link" href="{{route('login')}}">Login</a></li>
-                          <li class="nav-item"><a class="nav-link" href="{{route('register')}}">Register</a></li>
-                        @endguest
-                </ul>
+                @guest
+                    <li class="nav-item"><a class="nav-link" href="{{route('login')}}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('register')}}">Register</a></li>
+                @endguest
+            </ul>
 
         </div>
     </div>

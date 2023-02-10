@@ -9,9 +9,7 @@
     use Maatwebsite\Excel\Facades\Excel;
     use Rappasoft\LaravelLivewireTables\DataTableComponent;
     use Rappasoft\LaravelLivewireTables\Views\Column;
-    use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
     use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
-    use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
     use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 
     class PostTable extends DataTableComponent
@@ -51,39 +49,13 @@
                         fn($value, $row, Column $column) => $row->created_at?->format('M d, Y')
                     )
                     ->sortable(),
-                ButtonGroupColumn::make('Actions')
-                    ->attributes(function ($row) {
-                        return [
-                            'class' => 'space-x-1',
-                        ];
-                    })
-                    ->buttons([
-
-                        LinkColumn::make('Edit')
-                            ->title(fn($row) => 'Edit ')
-                            ->location(fn($row) => route('posts.edit', $row))
-                            ->attributes(function ($row) {
-                                return [
-                                    'class' => 'btn btn-sm btn-primary',
-                                ];
-                            }),
-                        LinkColumn::make('Show')
-                            ->title(fn($row) => 'Show ')
-                            ->location(fn($row) => route('posts.show', $row))
-                            ->attributes(function ($row) {
-                                return [
-                                    'target' => '_blank',
-                                    'class' => 'btn btn-sm btn-success',
-                                ];
-                            }),
-                    ]),
+                  Column::make('Action') ->label(function ($row, Column $column) { return view('action.post', ['post' => $row]); },),
             ];
         }
 
         public function builder() : Builder
         {
-            return Post::query()->with(['image', 'category', 'tags'])
-                ->when($this->columnSearch['title'] ?? null, fn($query, $title) => $query->where('posts.title', 'like', '%' . $title . '%'));
+            return Post::query()->with(['image', 'category', 'tags']);
         }
 
         public function bulkActions() : array

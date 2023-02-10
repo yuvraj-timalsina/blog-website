@@ -30,6 +30,7 @@
         Route::get('posts/category/{category}', [BlogController::class, 'categoryPosts'])->name('posts.category');
         Route::get('posts/tag/{tag}', [BlogController::class, 'tagPosts'])->name('posts.tag');
         Route::get('posts/user/{user}', [BlogController::class, 'userPosts'])->name('posts.user');
+
         Route::resources([
             'categories' => CategoryController::class,
             'tags' => TagController::class,

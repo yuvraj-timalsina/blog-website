@@ -5,8 +5,6 @@
     use App\Models\Tag;
     use Rappasoft\LaravelLivewireTables\DataTableComponent;
     use Rappasoft\LaravelLivewireTables\Views\Column;
-    use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
-    use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
     class TagTable extends DataTableComponent
     {
@@ -25,22 +23,7 @@
                     ->sortable()
                     ->searchable(),
                 Column::make("Slug", "slug"),
-                ButtonGroupColumn::make('Actions')
-                    ->attributes(function ($row) {
-                        return [
-                            'class' => 'space-x-1',
-                        ];
-                    })
-                    ->buttons([
-                         LinkColumn::make('Edit')
-                            ->title(fn($row) => 'Edit ')
-                            ->location(fn($row) => route('tags.edit', $row))
-                            ->attributes(function ($row) {
-                                return [
-                                    'class' => 'btn btn-sm btn-primary',
-                                ];
-                            }),
-                    ]),
+                Column::make('Action') ->label(function ($row, Column $column) { return view('action.tag', ['tag' => $row]); },),
             ];
         }
 
