@@ -35,10 +35,15 @@
                         'alt' => $row->name,
                     ]),
                 Column::make("Title", "title")
-                    ->sortable(),
+                    ->sortable()
+                ->searchable(),
                 Column::make("Slug", "slug"),
+                Column::make('Author', 'user.name')
+                    ->sortable()
+                ->searchable(),
                 Column::make("Category", "category.name")
-                    ->sortable(),
+                    ->sortable()
+                ->searchable(),
                 Column::make('Tags')
                     ->label(fn($row) => $row->tags->pluck('name')->implode(', ')),
                 Column::make('Created At')
@@ -76,7 +81,8 @@
 
         public function builder() : Builder
         {
-            return Post::query()->with(['image', 'category', 'tags']);
+            return Post::query()->with(['image', 'category', 'tags'])
+                 ->when($this->columnSearch['title'] ?? null, fn ($query, $title) => $query->where('posts.title', 'like', '%' . $title . '%'));
         }
 
         public function bulkActions() : array

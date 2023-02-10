@@ -12,6 +12,7 @@
     <link href="{{ asset('blog/css/styles.css') }}" rel="stylesheet"/>
     <!-- Boxicons CDN-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+    @livewireStyles
 </head>
 <body>
 <!-- Page header with logo and tagline-->
@@ -23,97 +24,7 @@
     </div>
 </header>
 <!-- Page content-->
-<div class="container">
-    <div class="col-lg-12">
-        <!-- Search widget-->
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-9">
-                <div class="mb-4">
-                    <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search by Blog Title..."
-                               aria-label="Search by Blog Title..." aria-describedby="button-search"/>
-                        <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Filter widgets-->
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-3">
-                <div class="mb-4">
-                    <select class="form-select" aria-label="Author Filter">
-                        <option hidden="">Author (0)</option>
-                        <option value="1">One</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="mb-4">
-                    <select class="form-select" aria-label="Category Filter">
-                        <option hidden>Category (0)</option>
-                        <option value="1">One</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="mb-4">
-                    <select class="form-select" aria-label="Tag Filter">
-                        <option hidden>Tag (2)</option>
-                        <option value="1">One</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row d-flex justify-content-center mb-5">
-            <div class="col-9">
-                <a href="#">Clear All</a>
-            </div>
-        </div>
-        <!-- Blog entries-->
-        <div class="row">
-            <!-- Nested row for non-featured blog posts-->
-            <div class="col-lg-3 col-md-4 col-sm-12">
-                <!-- Blog post-->
-                <div class="card mb-4">
-                    <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                                      alt="..."/></a>
-                    <div class="card-body">
-                        <a class="btn btn-sm btn-success mb-2" href="#!">Tech</a>
-                        <div class="small text-muted">January 1, 2022</div>
-                        <h2 class="card-title h4">Post Title</h2>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
-                            aliquid atque, nulla.</p>
-                        <div class="d-flex flex-row align-items-center">
-                            <div class="icon"><i class='bx bxs-user-circle'></i></div>
-                            <div class="ms-1 c-details">
-                                <h6 class="mb-0">Mailchimp</h6> <span>1 days ago</span>
-                            </div>
-                        </div>
-                        <div class="mt-2">
-                            <a class="btn btn-sm btn-outline-danger" href="#!">Tech</a>
-                            <a class="btn btn-sm btn-outline-danger" href="#!">Tech</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Pagination-->
-            <nav aria-label="Pagination">
-                <hr class="my-0"/>
-                <ul class="pagination justify-content-center my-4">
-                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a>
-                    </li>
-                    <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">Older</a></li>
-                </ul>
-            </nav>
-        </div>
-        <!-- Side widgets-->
-    </div>
-</div>
+<livewire:blog-component/>
 <!-- Footer-->
 <footer class="py-5 bg-dark">
     <div class="container"><p class="m-0 text-center text-white">Copyright
@@ -123,5 +34,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="{{ asset('blog/js/scripts.js') }}"></script>
+@livewireScripts
 </body>
 </html>
