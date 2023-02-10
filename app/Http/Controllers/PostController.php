@@ -45,7 +45,7 @@
          */
         public function show(Post $post)
         {
-            return view('blogs.single', compact('post'));
+            return view('posts.single', compact('post'));
         }
 
         /**

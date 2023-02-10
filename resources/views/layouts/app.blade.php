@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Blog Task') }}</title>
+    <title>{{ config('app.name', 'Blog Website') }}</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -16,7 +16,11 @@
     <!-- Bootstrap CDN -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-@livewireStyles
+
+      <!-- Boxicons CDN-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+
+    @livewireStyles
 
     @stack('styles')
 </head>

@@ -16,14 +16,14 @@
 
         protected $fillable = ['name', 'slug'];
 
-        public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'name'
-            ]
-        ];
-    }
+        public function sluggable() : array
+        {
+            return [
+                'slug' => [
+                    'source' => 'name'
+                ]
+            ];
+        }
         public function getRouteKeyName() : string
         {
             return 'slug';

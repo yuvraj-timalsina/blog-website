@@ -3,6 +3,7 @@
     namespace App\Models;
 
     // use Illuminate\Contracts\Auth\MustVerifyEmail;
+    use Cviebrock\EloquentSluggable\Sluggable;
     use Illuminate\Database\Eloquent\Factories\HasFactory;
     use Illuminate\Database\Eloquent\Relations\HasMany;
     use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,6 +13,7 @@
     class User extends Authenticatable
     {
         use HasApiTokens, HasFactory, Notifiable;
+        use Sluggable;
 
         /**
          * The attributes that are mass assignable.
@@ -47,12 +49,25 @@
         }
 
         /**
-     * Check if User is Admin.
-     *
-     * @return boolean
-     */
-    public function isAdmin() : bool
-    {
-        return $this->role === 'admin';
-    }
+         * Check if User is Admin.
+         *
+         * @return boolean
+         */
+        public function isAdmin() : bool
+        {
+            return $this->role === 'admin';
+        }
+
+        public function sluggable() : array
+        {
+            return [
+                'slug' => [
+                    'source' => 'name'
+                ]
+            ];
+        }
+         public function getRouteKeyName() : string
+        {
+            return 'slug';
+        }
     }
