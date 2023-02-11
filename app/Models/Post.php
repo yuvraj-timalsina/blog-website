@@ -63,8 +63,8 @@
          */
         public function deleteImage() : void
         {
-            if (Storage::disk('public')->exists($this->image?->thumbnail)) {
-                Storage::disk('public')->delete($this->image?->thumbnail);
+            if ($this->image) {
+                Storage::delete($this->image->imageFile);
             }
         }
 

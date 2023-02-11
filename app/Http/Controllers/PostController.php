@@ -67,7 +67,10 @@
                 $image = $request->thumbnail->store('posts');
                 /** delete old image */
                 $post->deleteImage();
-                $data['thumbnail'] = $image;
+                /** update post image */
+               $post->image()->update([
+                    'imageFile' => $image
+                ]);
             }
 
             $post->update($data);
