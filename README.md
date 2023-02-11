@@ -1,9 +1,7 @@
 
-# Laravel Livewire Blog Website
+# Blog Website
 
- Laravel Blog Management System.
-
-
+ Laravel & Livewire Blog Management System.
 
 ## Installation
 
@@ -87,8 +85,8 @@ Run the Server
 ## Login Credentials
 
 ```bash
-Email : admin@cms.com
-Password: password
+  Email : admin@cms.com
+  Password: password
 ```
 ## ER Diagram
 
