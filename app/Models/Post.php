@@ -63,7 +63,7 @@
          */
         public function deleteImage() : void
         {
-            if ($this->image) {
+            if ($this->image && Storage::disk('public')->exists($this->image->imageFile)) {
                 Storage::delete($this->image->imageFile);
             }
         }

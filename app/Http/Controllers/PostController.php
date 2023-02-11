@@ -68,9 +68,10 @@
                 /** delete old image */
                 $post->deleteImage();
                 /** update post image */
-               $post->image()->update([
-                    'imageFile' => $image
-                ]);
+                $post->image()->updateOrCreate(
+                    ['imageable_id' => $post->id],
+                    ['imageFile' => $image]
+                );
             }
 
             $post->update($data);
@@ -83,6 +84,7 @@
             }
             $post->tags()->sync($attachableTags);
             /** redirect user to index page */
+
             flash('Post Updated Successfully!');
 
             return to_route('posts.index');

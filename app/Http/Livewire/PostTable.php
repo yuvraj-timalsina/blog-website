@@ -45,7 +45,7 @@
                     ->label(fn($row) => $row->tags->pluck('name')->implode(', ')),
                 Column::make('Created At')
                     ->format(
-                        fn($value, $row, Column $column) => $row->created_at?->format('M d, Y'))
+                        fn($value, $row, Column $column) => $row->created_at->format('M d, Y'))
                     ->sortable(),
                 Column::make('Action')->label(function ($row, Column $column) {
                     return view('action.post', ['post' => $row]);
@@ -55,7 +55,7 @@
 
         public function builder() : Builder
         {
-            return Post::query()->with(['image', 'category', 'tags']);
+            return Post::query()->with(['user','image', 'category', 'tags']);
         }
 
         public function bulkActions() : array
