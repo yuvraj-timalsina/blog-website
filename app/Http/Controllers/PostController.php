@@ -4,12 +4,14 @@
 
     use App\Http\Requests\Post\StorePostRequest;
     use App\Http\Requests\Post\UpdatePostRequest;
+    use App\Imports\PostImport;
     use App\Models\Post;
     use App\Models\Tag;
     use App\Traits\FetchCategory;
     use App\Traits\FetchTag;
     use Illuminate\Http\Request;
     use Illuminate\Http\Response;
+    use Maatwebsite\Excel\Facades\Excel;
 
     class PostController extends Controller
     {
@@ -153,13 +155,15 @@
         {
             $post->delete();
             flash('Post Deleted Successfully!');
+
             return to_route('posts.index');
         }
 
-        public function import()
+        public function postImport(Request $request)
         {
-            $path = storage_path('app/public/posts.xlsx');
-            $data = \Excel::toArray(new \App\Imports\PostImport, $path);
-            dd($data);
+            Excel::import(new PostImport, $request->file('file')->store('temp'));
+            flash('Posts Imported Successfully!');
+
+            return back();
         }
     }
