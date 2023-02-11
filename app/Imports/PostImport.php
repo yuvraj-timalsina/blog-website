@@ -19,7 +19,8 @@
                 'slug' => $row[2],
                 'content' => $row[3],
                 'user_id' => $row[4],
-                'category_id' => $row[5]
+                'category_id' => $row[5],
+                'created_at' => $row[7],
             ]);
         }
     }
