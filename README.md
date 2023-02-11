@@ -33,6 +33,24 @@ Create and Configure the Database
   sudo mysql -u <username> -p
   create database blog_website;
 ```
+Add Database Credentials in .env
+
+```bash
+  DB_DATABASE=blog_website
+  DB_USERNAME=<username>
+  DB_PASSWORD=<password>
+```
+Change File Driver to public in .env
+
+```bash
+  FILESYSTEM_DRIVER=public
+```
+Change App URL in .env
+
+```bash
+  APP_URL=http://127.0.0.1:8000
+```
+
 Install Dependencies
 
 ```bash
@@ -78,4 +96,3 @@ Password: password
 ## Author
 
 - [@yuvraj-timalsina](https://www.github.com/yuvraj-timalsina)
-
