@@ -69,6 +69,7 @@
         public function bulkDelete() : void
         {
             Post::whereIn('id', $this->getSelected())->delete();
+            flash('All selected posts deleted successfully.');
             $this->clearSelected();
         }
 

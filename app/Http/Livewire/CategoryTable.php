@@ -37,6 +37,7 @@
         public function bulkDelete() : void
         {
             Category::whereIn('id', $this->getSelected())->delete();
+            flash('All selected categories deleted successfully.');
             $this->clearSelected();
         }
 

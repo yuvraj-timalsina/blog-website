@@ -37,6 +37,7 @@
         public function bulkDelete() : void
         {
             Tag::whereIn('id', $this->getSelected())->delete();
+            flash('All selected tags deleted successfully.');
             $this->clearSelected();
         }
 
