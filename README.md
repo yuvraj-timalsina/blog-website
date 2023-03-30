@@ -8,7 +8,7 @@
 Clone the project using SSH or HTTPS.
 
 ```bash
-  git@github.com:yuvraj-timalsina/blog-website.git
+git@github.com:yuvraj-timalsina/blog-website.git
 ```
     
 ## Run Locally
@@ -16,20 +16,20 @@ Clone the project using SSH or HTTPS.
 Go to the Project Directory
 
 ```bash
-  cd blog-website
+cd blog-website
 ```
 
 Create .env in root directory
 
 ```bash
-  cp .env.example .env
+cp .env.example .env
 ```
 
 Create and Configure the Database
 
 ```bash
-  sudo mysql -u <username> -p
-  create database blog_website;
+sudo mysql -u <username> -p
+create database blog_website;
 ```
 Add Database Credentials in .env
 
@@ -41,52 +41,52 @@ Add Database Credentials in .env
 Change File Driver to public in .env
 
 ```bash
-  FILESYSTEM_DRIVER=public
+FILESYSTEM_DRIVER=public
 ```
 Change App URL in .env
 
 ```bash
-  APP_URL=http://127.0.0.1:8000
+APP_URL=http://127.0.0.1:8000
 ```
 
 Install Dependencies
 
 ```bash
-  composer install
+composer install
 ```
 
 Generate Application Key
 
 ```bash
-  php artisan key:generate
+php artisan key:generate
 ```
 
 Run the Database Migrations and Seeders
 
 ```bash
-  php artisan migrate:fresh --seed
+php artisan migrate:fresh --seed
 ```
 
 Create a Symbolic Link to Storage
 
 ```bash
-  php artisan storage:link
+php artisan storage:link
 ```
 
 Run the Server
 
 ```bash
-  php artisan serve
+php artisan serve
   
-  http://127.0.0.1:8000
+http://127.0.0.1:8000
 ```
 
 
 ## Login Credentials
 
 ```bash
-  Email : admin@cms.com
-  Password: password
+Email : admin@cms.com
+Password: password
 ```
 ## ER Diagram
 
