@@ -25,7 +25,7 @@ Create .env in root directory
 cp .env.example .env
 ```
 
-Create and Configure the Database
+Create and configure the Database
 
 ```bash
 sudo mysql -u <username> -p
