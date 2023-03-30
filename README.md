@@ -34,9 +34,9 @@ create database blog_website;
 Add Database Credentials in .env
 
 ```bash
-  DB_DATABASE=blog_website
-  DB_USERNAME=<username>
-  DB_PASSWORD=<password>
+DB_DATABASE=blog_website
+DB_USERNAME=<username>
+DB_PASSWORD=<password>
 ```
 Change File Driver to public in .env
 
